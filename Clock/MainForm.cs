@@ -42,28 +42,35 @@ namespace Clock
                 LabelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
         }
 
-        private void cbShowDate_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void cbShowDate_CheckedChanged(object sender, EventArgs e)=> tsmiShowDate.Checked = cbShowDate.Checked;
 
         private void LabelTime_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnHideContols_Click(object sender, EventArgs e) => SetVisibility(false);
+        private void btnHideContols_Click(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = false);
         
-        private void LabelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(true);
+        private void LabelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked = true);
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 
         }
 
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmiExit_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void tsmiTopmost_CheckedChanged(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
+
+        private void tsmiShowControls_CheckedChanged(object sender, EventArgs e) => SetVisibility(tsmiShowControls.Checked);
+
+        private void tsmiShowDate_CheckedChanged(object sender, EventArgs e) => cbShowDate.Checked = tsmiShowDate.Checked;
+
+        private void tsmiShowWeekday_CheckedChanged(object sender, EventArgs e)=>cbShowWeekday.Checked = tsmiShowWeekday.Checked;
+
+        private void cbShowWeekday_CheckedChanged(object sender, EventArgs e)=> tsmiShowWeekday.Checked = cbShowWeekday.Checked;
     }
 }
