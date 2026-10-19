@@ -56,5 +56,14 @@ namespace Clock
         
         private void LabelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(true);
 
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
