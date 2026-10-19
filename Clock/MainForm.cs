@@ -60,7 +60,7 @@ namespace Clock
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
         private void tsmiTopmost_CheckedChanged(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
