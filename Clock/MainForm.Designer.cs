@@ -39,6 +39,7 @@
             // LabelTime
             // 
             this.LabelTime.AutoSize = true;
+            this.LabelTime.BackColor = System.Drawing.SystemColors.Highlight;
             this.LabelTime.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelTime.Location = new System.Drawing.Point(12, 9);
             this.LabelTime.Name = "LabelTime";
@@ -46,6 +47,7 @@
             this.LabelTime.TabIndex = 0;
             this.LabelTime.Text = "Current Time";
             this.LabelTime.Click += new System.EventHandler(this.LabelTime_Click);
+            this.LabelTime.DoubleClick += new System.EventHandler(this.LabelTime_DoubleClick);
             // 
             // timer
             // 

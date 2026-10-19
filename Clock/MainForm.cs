@@ -17,6 +17,16 @@ namespace Clock
             InitializeComponent();
         }
 
+        void SetVisibility(bool visible)
+        {
+            cbShowDate.Visible     = visible;
+            cbShowWeekday.Visible  = visible;
+            btnHideContols.Visible = visible;
+            this.ShowInTaskbar     = visible;
+            this.FormBorderStyle   = visible ? FormBorderStyle.FixedToolWindow : FormBorderStyle.None;
+            this.TransparencyKey   = visible ? Color.Empty :this.BackColor;
+        }
+
         private void timer_Tick(object sender, EventArgs e)
         {
             LabelTime.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -36,9 +46,9 @@ namespace Clock
 
         }
 
-        private void btnHideContols_Click(object sender, EventArgs e)
-        {
-            
-        }
+        private void btnHideContols_Click(object sender, EventArgs e) => SetVisibility(false);
+        
+        private void LabelTime_DoubleClick(object sender, EventArgs e) => SetVisibility(true);
+
     }
 }
