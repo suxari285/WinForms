@@ -12,10 +12,14 @@ namespace Clock
 {
     public partial class MainForm : Form
     {
+        ColorDialog backgroundColorDialog;
+        ColorDialog foregroundColorDialog;
         public MainForm()
         {
             InitializeComponent();
 
+            backgroundColorDialog = new ColorDialog ();
+            foregroundColorDialog = new ColorDialog ();
             this.Location = new Point
                 (
                     Screen.PrimaryScreen.Bounds.Right- this.Width-50,
@@ -41,6 +45,7 @@ namespace Clock
                 LabelTime.Text += $"\n{DateTime.Now.ToString("yyyy.MM.dd")}";
             if (cbShowWeekday.Checked)
                 LabelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+            notifyIcon.Text = LabelTime.Text;
         }
 
         private void cbShowDate_CheckedChanged(object sender, EventArgs e)=> tsmiShowDate.Checked = cbShowDate.Checked;
@@ -83,6 +88,18 @@ namespace Clock
                 this.TopMost = true;
                 this.TopMost = false;
             }
+        }
+
+        private void tsmiBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if(backgroundColorDialog.ShowDialog() == DialogResult.OK)
+                LabelTime.BackColor = backgroundColorDialog.Color;
+        }
+
+        private void tsmiForegroundColor_Click(object sender, EventArgs e)
+        {
+            if (foregroundColorDialog.ShowDialog() == DialogResult.OK)
+                LabelTime.ForeColor = foregroundColorDialog.Color;
         }
     }
 }
