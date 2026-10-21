@@ -21,6 +21,7 @@ namespace Clock
                     Screen.PrimaryScreen.Bounds.Right- this.Width-50,
                     Screen.PrimaryScreen.Bounds.Bottom / 20
                 );
+            SetVisibility (false);
         }
 
         void SetVisibility(bool visible)
@@ -58,10 +59,7 @@ namespace Clock
 
         }
 
-        private void tsmiExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void tsmiExit_Click(object sender, EventArgs e) => this.Close();
 
         private void tsmiTopmost_CheckedChanged(object sender, EventArgs e) => this.TopMost = tsmiTopmost.Checked;
 
@@ -72,5 +70,19 @@ namespace Clock
         private void tsmiShowWeekday_CheckedChanged(object sender, EventArgs e)=>cbShowWeekday.Checked = tsmiShowWeekday.Checked;
 
         private void cbShowWeekday_CheckedChanged(object sender, EventArgs e)=> tsmiShowWeekday.Checked = cbShowWeekday.Checked;
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.TopMost==false)
+            {
+                this.TopMost = true;
+                this.TopMost = false;
+            }
+        }
     }
 }
