@@ -236,11 +236,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(246, 354);
+            this.ClientSize = new System.Drawing.Size(298, 354);
             this.Controls.Add(this.btnHideContols);
             this.Controls.Add(this.cbShowWeekday);
             this.Controls.Add(this.cbShowDate);
             this.Controls.Add(this.LabelTime);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
