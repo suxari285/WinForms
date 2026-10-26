@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Text;
 
 namespace Clock
 {
@@ -23,6 +24,7 @@ namespace Clock
 
             LoadFonts("*.ttf");
             LoadFonts("*.otf");
+            comboBoxFont.SelectedIndex = 20;
         }
         void LoadFonts(string pattern)
         {
@@ -38,6 +40,19 @@ namespace Clock
         private void buttonOK_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxFont_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ApplyFont();
+        }
+
+        private void counterFontSize_ValueChanged(object sender, EventArgs e)=>ApplyFont();
+        void ApplyFont()
+        {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile(comboBoxFont.SelectedItem.ToString());
+            labelExample.Font = new Font(pfc.Families[0], (int)counterFontSize.Value);
         }
     }
 }
