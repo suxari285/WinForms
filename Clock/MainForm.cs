@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace Clock
             backgroundColorDialog = new ColorDialog ();
             foregroundColorDialog = new ColorDialog ();
             fontDialog = new FontDialog (this);
+
+            LoadSettings();
             SetVisibility (false);
         }
         [DllImport("kernel32.dll")]
@@ -54,8 +57,8 @@ namespace Clock
             writer.WriteLine(tsmiShowDate.Checked);
             writer.WriteLine(tsmiShowWeekday.Checked);
             writer.WriteLine(fontDialog.Filename);
-            writer.WriteLine(backgroundColorDialog.Color.ToArgb());
-            writer.WriteLine(foregroundColorDialog.Color.ToArgb());
+            writer.WriteLine(LabelTime.BackColor.ToArgb());
+            writer.WriteLine(LabelTime.ForeColor.ToArgb());
             writer.Close();
             Process.Start("notepad", filename);
         }
@@ -63,10 +66,20 @@ namespace Clock
         {
             string filename = "Settings.ini";
             StreamReader reader = new StreamReader(filename);
+
             tsmiTopmost.Checked         = bool.Parse(reader.ReadLine());
             tsmiShowControls.Checked    = bool.Parse(reader.ReadLine());
             tsmiShowDate.Checked        = bool.Parse(reader.ReadLine());
             tsmiShowWeekday.Checked     = bool.Parse(reader.ReadLine());
+
+            fontDialog.Filename = reader.ReadLine();
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile($"{Application.ExecutablePath}\\..\\..\\..\\Fonts\\{fontDialog.Filename}");
+            fontDialog.Font = LabelTime.Font = new Font(pfc.Families[0], 32);
+
+            LabelTime.BackColor = backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
+            LabelTime.ForeColor = foregroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(reader.ReadLine()));
+
             reader.Close();
             Process.Start("notepad", filename);
         }
