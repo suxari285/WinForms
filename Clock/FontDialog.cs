@@ -74,6 +74,7 @@ namespace Clock
             );
             labelExample.Font = Font;
             comboBoxFont.SelectedItem = Filename;
+            counterFontSize.Value = (int)Font.Size; 
         }
     }
 }
