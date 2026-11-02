@@ -84,6 +84,10 @@ namespace Clock
 
             reader.Close();
             Process.Start("notepad", filename);
+
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", false);
+            tsmiAutorun.Checked = registryKey.GetValueNames().Contains("Clock_P_418");
+            registryKey.Dispose();
         }
 
         private void timer_Tick(object sender, EventArgs e)
